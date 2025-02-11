@@ -324,7 +324,7 @@ var consonantMap1 = map[rune]string{
 	'o': "ꦲꦺꦴ", // o
 	'p': "ꦥ",   // p
 	'q': "꧀",   // q
-	'r': "",    // r
+	'r': "ꦫ",   // r
 	's': "ꦱ",   // s
 	't': "ꦠ",   // t
 	'u': "ꦈ",   // u
