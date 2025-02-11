@@ -5,7 +5,6 @@ import (
 	// "unicode"
 )
 
-// Translate translates Latin to Javanese Script
 func Translate(latin string, config *TranslateConfiguration) string {
 	if HasAksara(latin) {
 		return TranslateAksara(latin)
@@ -119,7 +118,29 @@ func Translate(latin string, config *TranslateConfiguration) string {
 	}
 
 	if pi < i {
-		ret.WriteString(getSound(str[pi:i], *config, vowelPrev))
+		lastSegment := str[pi:i]
+		lastRune := rune(lastSegment[len(lastSegment)-1])
+
+		// Tangani kasus spasi setelah konsonan
+		if lastRune == 'h' {
+			// Jika sebelum spasi akhir adalah 'h', gunakan sandhangan ꦃ
+			ret.WriteString(getSound(strings.TrimSuffix(lastSegment, "h"), *config, vowelPrev))
+			ret.WriteString("ꦃ")
+		} else if lastRune == 'r' {
+			// Tangani kasus akhir 'r' sebelum spasi
+			if i == len(str) || str[i] == ' ' {
+				ret.WriteString(getSound(strings.TrimSuffix(lastSegment, "r"), *config, vowelPrev))
+				ret.WriteString("ꦂ") // gunakan sandhangan ꦽ (aksara ra) jika ada sebelum spasi
+			} else {
+				ret.WriteString(getSound(lastSegment, *config, vowelPrev))
+			}
+		} else if isConsonant(lastRune) && (i == len(str) || str[i] == ' ') {
+			// Jika akhir segmen adalah konsonan dan diikuti spasi, hindari pangkon otomatis
+			ret.WriteString(getSound(lastSegment, *config, vowelPrev))
+		} else {
+			// Default translasi
+			ret.WriteString(getSound(lastSegment, *config, vowelPrev))
+		}
 	}
 
 	return strings.TrimSpace(ret.String())
@@ -212,6 +233,11 @@ func TranslateAksara(aksara string) string {
 	result := strings.TrimSpace(ret.String())
 	result = strings.ReplaceAll(result, "ae", "e") // Fix double vowel issues
 	result = strings.ReplaceAll(result, "iy", "i") // Fix common combinations
+
+	// Perubahan: Pastikan 'h' di akhir kata tetap disertakan
+	if strings.HasSuffix(result, "h") {
+		result = result + "h"
+	}
 
 	return result
 }
