@@ -1,6 +1,7 @@
+<p align="center">
+  <img src="https://i.ibb.co.com/Z6V3D131/jawog-logo.png" alt="jawog-logo" width="100%">
+</p>
 # Jawog - Javanese Script Translator
-
-<a href="https://ibb.co.com/Z6V3D131"><img src="https://i.ibb.co.com/Z6V3D131/jawog-logo.png" alt="jawog-logo" border="0"></a>
 
 A Go package for translating between Latin text and Javanese script (Aksara Jawa).
 
