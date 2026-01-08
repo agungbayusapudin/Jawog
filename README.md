@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="https://i.ibb.co.com/Z6V3D131/jawog-logo.png" alt="jawog-logo" width="100%">
+  <a href="https://ibb.co.com/Wv1w7xfx">
+    <img src="https://i.ibb.co.com/XxTg62t2/Screenshot-2026-01-09-at-01-35-08.png" alt="Logo" width="500">
+  </a>
 </p>
 # Jawog - Javanese Script Translator
 
