@@ -3,7 +3,6 @@
     <img src="https://i.ibb.co.com/XxTg62t2/Screenshot-2026-01-09-at-01-35-08.png" alt="Logo" width="500">
   </a>
 </p>
-# Jawog - Javanese Script Translator
 
 A Go package for translating between Latin text and Javanese script (Aksara Jawa).
 
